@@ -9,48 +9,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-
+import javax.persistence.OneToOne;
 
 @Entity
-public class Purchase {
-	
+public class AddStock {
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
+	@Column(nullable = false, name = "QUANTITY")
+	private int quantity;
+
 	@Column(nullable = false, name = "DATETIME")
 	LocalDateTime date;
 	
-	@Column(nullable = false, name = "QUANTITY")
-	int quantity;
-	
-	@Column(nullable = false, name = "PRICE")
-	double price;
-	
-	@ManyToOne
 	@JoinColumn(name = "ITEM_ID")
+	@ManyToOne
 	Item item;
 	
-	@ManyToOne
-	@JoinColumn(name = "PERSON_ID")
-	Person person;
+	@OneToOne
+	@JoinColumn(name = "MERCHANT_ID")
+	Merchant merchant;
 	
+	@ManyToOne
+	@JoinColumn(name = "STATUS_ID")
+	Status status;
+
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public LocalDateTime getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDateTime date) {
-		this.date = date;
 	}
 
 	public int getQuantity() {
@@ -61,29 +53,28 @@ public class Purchase {
 		this.quantity = quantity;
 	}
 
-	public double getPrice() {
-		return price;
+	public LocalDateTime getDate() {
+		return date;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 
-	public Item getItem() {
-		return item;
+	public Merchant getMerchant() {
+		return merchant;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setMerchant(Merchant merchant) {
+		this.merchant = merchant;
 	}
 
-	public Person getPerson() {
-		return person;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
-	
 }

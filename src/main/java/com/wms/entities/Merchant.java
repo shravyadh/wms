@@ -3,19 +3,22 @@ package com.wms.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Role {
+public class Merchant {
 	
 	@Id
 	@Column(name = "ID")
 	private int id;
 	
-	@Column(nullable = false, length = 20, name = "CODE")
-	private String code;
-	
-	@Column(nullable = false, length = 20, name = "NAME")
+	@Column(nullable = false, length = 30, name = "NAME")
 	private String name;
+	
+	@OneToOne
+	@JoinColumn(name = "PERSON_ID")
+	Person person;
 
 	public int getId() {
 		return id;
@@ -25,14 +28,6 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -40,4 +35,14 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+	
+	
 }

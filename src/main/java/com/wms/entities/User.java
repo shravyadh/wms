@@ -5,22 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
 public class User {
 	
 	@Id
+	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 30, name = "USERNAME")
 	private String username;
 	
-	@Column(nullable = false, unique = true, length = 30)
+	@Column(nullable = false, unique = true, length = 30, name = "PASSWORD")
 	private String password;
 		
 	@OneToOne 
+	@JoinColumn(name = "PERSON_ID")
 	Person person;
 
 	public int getId() {

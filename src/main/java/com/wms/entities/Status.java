@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Role {
+public class Status {
 	
 	@Id
 	@Column(name = "ID")
